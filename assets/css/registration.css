@@ -1,0 +1,229 @@
+.registration-sec{
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, rgb(0, 165, 147) 17.03%, rgb(0, 85, 76) 68.72%);
+}
+.registration-sec:after{
+    content: "";
+    background: linear-gradient(180deg, hsla(0, 0%, 7%, 0), hsla(0, 0%, 7%, .8) 54.01%, #121212);
+    bottom: 0;
+    height: 400px;
+    left: 0;
+    position: absolute;
+    width: 100vw;
+    z-index: 0;
+}
+.registration-sec .container {
+    max-width: 1630px;
+}
+.registration-cnt{
+    display: flex;
+    height: 100vh;
+    justify-content: flex-start;
+}
+.registration-left{
+    align-items: flex-end;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    max-height: 1000px;
+    padding: 0 24px;
+    position: relative;
+    width: calc(100% - 600px);
+    display: flex;
+    height: 100%;
+    justify-content: flex-start;
+}
+
+.offer-main{
+    align-self: flex-end;
+    box-sizing: border-box;
+    flex-direction: column;
+    max-width: 100%;
+    position: relative;
+    z-index: 20;
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+.offer-image{
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 200px;
+    width: 100%;
+}
+.offer-terms{
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 32px;
+    padding: 24px 0;
+    text-align: center;
+}
+.offer-terms-link{
+    color: rgba(255, 255, 255, 0.64);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.registration-right{
+    max-width: 600px;
+    width: 100%;
+    backdrop-filter: blur(50px);
+    background: rgba(18, 18, 18, 0.32);
+    position: relative;
+    z-index: 1;
+}
+.registration-info{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 150px 96px 48px 96px;
+    width: 100%;
+    position: relative;
+    z-index: 11;
+}
+.registration-info h2{
+    color: #FFFFFF;
+    margin-bottom: 24px;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 44px;
+    text-align: left;
+    width: 100%;
+}
+.registration-block{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.registration-input{
+    width: 100%;
+}
+.registration-input small{
+    font-size: 14px;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+.registration-input label{
+    display: flex;
+    width: 100%;
+    margin: 6px 0;
+}
+.registration-input input{
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px 10px 10px 12px;
+    border-radius: 6px;
+    background: unset;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+}
+.registration-input small{
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.64);
+}
+.promocode-link{
+    border-bottom: 1px dashed;
+    color: rgba(255, 255, 255, .88);
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 30px;
+    display: inline-block;
+}
+
+.registration-check{
+    margin-top: 30px;
+}
+
+.check-lab{
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.64);
+}
+.check-lab a{
+    color: rgba(255, 255, 255, 1);
+    display: contents;
+}
+.check-lab input {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 14px;
+    width: 14px;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 4px;
+}
+
+.check-lab input:checked ~ .checkmark {
+    background-color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+
+}
+
+.check-lab .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 3px;
+    height: 7px;
+    border: solid rgba(18, 18, 18, 0.64);
+    border-width: 0 1px 1px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.check-lab input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.registration-info .btn-register{
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 6px;
+    height: 44px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.already-account{
+    margin-top: 30px;
+}
+.already-account a{
+    color: #FFFFFF;
+}
+
+.pages-login-info h1{
+    margin-bottom: 25px;
+    color: #1a1e25;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+.pages-login{
+    padding: 150px 0 20px;
+}
+.pages-login-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
