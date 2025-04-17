@@ -133,3 +133,77 @@ button { padding: 5px 10px; }
 }
 
 
+
+
+
+
+#user-edit-page button{
+    font-size: 16px;
+}
+
+
+.actions-flex{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.edit-user-cnt{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.edit-user-cnt h3{
+    color: #1a1e25;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+}
+.edit-user-cnt .checkmark {
+    height: 20px;
+    width: 20px;
+    border: 1px solid #000;
+}
+
+.edit-user-cnt .check-lab input:checked ~ .checkmark {
+    background: #00b8a3;
+    border: 1px solid #00b8a3;
+}
+.edit-user-cnt .check-lab .checkmark:after {
+    display: none;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid #FFFFFF;
+    border-width: 0 1px 1px 0;
+}
+.edit-user-cnt .check-lab{
+    color: #1a1e25;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+.history-list{
+    margin-top: 25px;
+}
+
+#documents-list{
+    margin-bottom: 50px;
+}
+
+.edit-user-cnt .tab-user th {
+    padding: 12px 14px;
+    font-size: 16px;
+}
+.edit-user-cnt .tab-user td {
+    padding: 12px 14px;
+    font-size: 15px;
+}
