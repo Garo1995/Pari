@@ -126,12 +126,19 @@
 }
 .modal-inp{
     width: 100%;
-
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 .modal-inp label{
     display: flex;
     width: 100%;
+    color: #1a1e25;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
 }
+
 .modal-inp input, .modal-inp textarea{
     width: 100%;
     background: #FFFFFF;

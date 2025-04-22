@@ -130,40 +130,92 @@
                     </table>
                 </div>
             </div>
+
             <div id="editView" style="display: none;">
-                <div class="profile-actions">
-                    <h3>Редактирование профиля</h3>
-                   <div class="modal-inp">
-                       <label>Имя</label>
-                       <input type="text" id="editName">
-                   </div>
+                <div class="edit-header">
+                    <button class="person-send" onclick="goBack()">Назад к списку</button>
+                    <button class="btn-register" onclick="saveUserChanges()">Сохранить</button>
+                </div>
+
+                <div class="edit-user-info">
+                    <div class="edit-user-info-fl">
+                        <span id="editStatusCircle"></span>
+                        <span>ID пользователя: <strong id="editUserId"></strong></span>
+                    </div>
+                    <span>Дата регистрации: <strong id="editRegDate"></strong></span>
+                    <span>Дата последнего захода: <strong id="editLastLogin"></strong></span>
+                </div>
+
+                <div class="tab-buttons">
+                    <button class="person-send" onclick="switchTab('profile')">Профиль</button>
+                    <button class="person-send" onclick="switchTab('messages')">Сообщения</button>
+                    <button class="person-send" onclick="switchTab('bets')">Ставки</button>
+                    <button class="person-send" onclick="switchTab('files')">Файлы</button>
+                </div>
+
+                <div id="tabProfile" class="tab-section  ">
+                    <div class="modal-inp">
+                        <label>ФИО</label>
+                        <input type="text" id="editName">
+                    </div>
+                    <div class="modal-inp">
+                        <label>Телефон</label>
+                        <input type="text" id="editPhone">
+                    </div>
                     <div class="modal-inp">
                         <label>Email</label>
                         <input type="text" id="editEmail">
                     </div>
-                   <div class="modal-inp">
-                       <label>Пароль</label>
-                       <input type="password" id="editPassword">
-                   </div>
-                   <div class="modal-inp">
-                       <label>Баланс (в копейках)</label>
-                       <input type="number" id="editBalance">
-                   </div>
+                    <div class="modal-inp">
+                        <label>Баланс (в копейках)</label>
+                        <input type="number" id="editBalance">
+                    </div>
 
-                   <div class="modal-inp">
-                       <label>Сообщения в историю операций</label>
-                       <textarea id="editMessages" rows="5"></textarea>
-                   </div>
+                   <div class="edit-user-cnt">
+                       <div class="registration-check ">
+                           <label class="check-lab">
+                               Верификация
+                               <input type="checkbox" id="editVerified">
 
-                   <div class="profile-actions-btn">
-                       <button class="btn-register" onclick="saveUserChanges()">Сохранить</button>
-                       <button class="person-send" onclick="deleteUser()" style="background:red; color:white;">Удалить пользователя</button>
-                       <button class="person-send" onclick="goBack()">Назад к списку</button>
+                               <span class="checkmark"></span>
+                           </label>
+                       </div>
+                   </div>
+                    <button class="person-send" onclick="confirmDeleteUser()" style="background:red; color:white;">Удалить пользователя</button>
+                </div>
+
+                <div id="tabMessages" class="tab-section" style="display:none;">
+                    <div class="modal-inp">
+                        <label>Сообщения</label>
+                        <textarea id="editMessages" rows="5"></textarea>
+                    </div>
+                   <div class="btn-fl-tab">
+                       <button class="btn-register">Добавить</button>
+                       <button class="person-send">Редактировать</button>
+                       <button class="person-send">Удалить</button>
                    </div>
                 </div>
-            </div>
 
+                <div id="tabBets" class="tab-section" style="display:none;">
+                    <p>- список ставок -</p>
+                    <div class="btn-fl-tab">
+                        <button class="btn-register">Добавить</button>
+                        <button class="person-send">Редактировать</button>
+                        <button class="person-send">Удалить</button>
+                    </div>
+                </div>
+
+                <div id="tabFiles" class="tab-section" style="display:none;">
+                    <p>- список файлов -</p>
+                    <div class="btn-fl-tab">
+                        <button class="btn-register">Добавить</button>
+                        <button class="person-send">Редактировать</button>
+                        <button class="person-send">Удалить</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 </section>
 
@@ -178,6 +230,7 @@
 <script src="assets/js/script.js"></script>
 
 <script>
+
     const data = {
         data: {
             list: [
@@ -228,12 +281,8 @@
                 let aVal = a[sortKey];
                 let bVal = b[sortKey];
 
-                if (sortKey === 'name') {
-                    return sortAsc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-                }
-                if (typeof aVal === 'boolean') {
-                    return sortAsc ? bVal - aVal : aVal - bVal;
-                }
+                if (sortKey === 'name') return sortAsc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+                if (typeof aVal === 'boolean') return sortAsc ? bVal - aVal : aVal - bVal;
                 return sortAsc ? aVal - bVal : bVal - aVal;
             });
         }
@@ -244,28 +293,43 @@
         users.forEach(user => {
             const row = document.createElement('tr');
             row.innerHTML = `
-          <td><span class="status ${user.is_online ? 'online' : 'offline'}"></span></td>
-          <td>${formatTimestamp(user.last_online_ts)}</td>
-          <td>${user.id}</td>
-          <td>${formatTimestamp(user.reg_ts)}</td>
-          <td>${user.name}</td>
-          <td>${user.email || '-'}</td>
-          <td>${(user.balance / 100).toFixed(2)}</td>
-          <td><button class="person-send" onclick="editUser(${user.id})">Редактировать</button></td>
-        `;
+      <td><span class="status ${user.is_online ? 'online' : 'offline'}"></span></td>
+      <td>${formatTimestamp(user.last_online_ts)}</td>
+      <td>${user.id}</td>
+      <td>${formatTimestamp(user.reg_ts)}</td>
+      <td>${user.name}</td>
+      <td>${user.email || '-'}</td>
+      <td>${(user.balance / 100).toFixed(2)}</td>
+      <td><button class="person-send" onclick="editUser(${user.id})">Редактировать</button></td>
+    `;
             tbody.appendChild(row);
         });
     }
 
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-section').forEach(el => el.style.display = 'none');
+        document.getElementById('tab' + capitalize(tab)).style.display = 'block';
+    }
+
+    function capitalize(s) {
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
     function editUser(userId) {
         selectedUser = data.data.list.find(u => u.id === userId);
+        document.getElementById('editUserId').innerText = selectedUser.id;
+        document.getElementById('editRegDate').innerText = formatTimestamp(selectedUser.reg_ts);
+        document.getElementById('editLastLogin').innerText = formatTimestamp(selectedUser.last_online_ts);
+        document.getElementById('editStatusCircle').className = 'status ' + (selectedUser.is_online ? 'online' : 'offline');
+
         document.getElementById('editName').value = selectedUser.name;
         document.getElementById('editEmail').value = selectedUser.email;
-        document.getElementById('editPassword').value = '';
         document.getElementById('editBalance').value = selectedUser.balance;
         document.getElementById('editMessages').value = selectedUser.messages.join('\n');
+
         document.getElementById('tableView').style.display = 'none';
         document.getElementById('editView').style.display = 'block';
+        switchTab('profile');
     }
 
     function saveUserChanges() {
@@ -274,6 +338,10 @@
         selectedUser.balance = parseInt(document.getElementById('editBalance').value);
         selectedUser.messages = document.getElementById('editMessages').value.split('\n');
         goBack();
+    }
+
+    function confirmDeleteUser() {
+        if (confirm("Вы действительно хотите удалить пользователя?")) deleteUser();
     }
 
     function deleteUser() {

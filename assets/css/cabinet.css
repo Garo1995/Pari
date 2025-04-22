@@ -102,6 +102,7 @@ button { padding: 5px 10px; }
     flex-direction: column;
     max-width: 600px;
     width: 100%;
+    margin-top: 30px;
 }
 .profile-actions h3{
     text-overflow: ellipsis;
@@ -206,4 +207,88 @@ button { padding: 5px 10px; }
 .edit-user-cnt .tab-user td {
     padding: 12px 14px;
     font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.edit-header{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+#editView button{
+    margin: 0;
+    font-size: 16px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+.edit-user-info{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.edit-user-info span{
+    color: #1a1e25;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+.edit-user-info-fl{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tab-buttons{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+.tab-section{
+    margin-top: 20px;
+}
+.btn-fl-tab{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+.tab-section p{
+    color: #1a1e25;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+#tabProfile .modal-inp{
+    margin-top: 15px;
+}
+.tab-section .registration-check{
+    margin-top: 0;
 }
